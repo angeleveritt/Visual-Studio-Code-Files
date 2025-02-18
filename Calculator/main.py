@@ -1,7 +1,7 @@
-# main.py for UWO Calculator mini project - by Angelique Everitt
+# malllin.py for UWO Calculator mini project - by Angelique Everitt
 
-first_number = int(input("Enter the first number: "))
-second_number = int(input("Enter the second number: "))
+first_number = float(input("Enter the first number: "))
+second_number = float(input("Enter the second number: "))
 sum = (first_number + second_number)
 subtraction = (first_number - second_number)
 multiplication = (first_number * second_number)
