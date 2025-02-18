@@ -23,3 +23,12 @@ else:
     print("Outside the loop, num:", num)
 
 print()
+
+print("another example where condition is (x < 5)")
+print()      
+x = 1
+while x < 5: x += 1
+print(x)
+print()
+print("fin")
+
