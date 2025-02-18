@@ -5,6 +5,10 @@ print("This program calculates the circumference and area of a circle based on u
 print()
 import math
 radius = float(input("Input the radius of the circle: "))
+if (radius < 0) :
+    print("The radius value must be positive. Try again.")
+    radius = float(input("Input the radius of the circle: "))
+       
 circumference = float(2*math.pi*radius)
 area = float(math.pi*(radius*radius))
 print("Given the radius ", radius, "the circumference is ", circumference)
