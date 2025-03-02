@@ -22,3 +22,6 @@ if __name__ == "__main__":
 
     sorted_list2 = bubble_sort(numbers2)
     print("Sorted list:", sorted_list2)
+print()
+print("fin")
+print()
