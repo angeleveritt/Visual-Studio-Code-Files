@@ -17,7 +17,7 @@ def bubble_sort(arr):
 
 
 if __name__ == "__main__":
-    numbers = [64, 34, 25, 12, 22, 11, 90]
+    numbers = [60, 34, 25, 12, 22, 11, 90]
     print("Original list:", numbers)
 
     sorted_list = bubble_sort(numbers)
