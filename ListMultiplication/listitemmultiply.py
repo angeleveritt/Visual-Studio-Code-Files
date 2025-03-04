@@ -4,25 +4,19 @@ print("List Items for Multiplication Assignment")
 print()
 
 
-def main(ls) :
-    print("The list inside the main function is : ", ls)
+def main() :
+    ls = [12, 70, -4, 16, 22]                                          
     result = 1
     print("result is : ", result)
     n = len(ls)
-    print("The length of the list is " , n)             # getting this far
-    for i in ls :
-        print(ls[i])
-        if ls[i] <= (ls[-1]) :
-            result = result * ls[i]
-            return result
-            print("inside the if loop, this is result : ", result)
-        else :
-            return result
-    print("result inside the function : ", result)
-    return mul_out
+    print("The length of the list is " , n)            
+    for num in ls:                                             
+        result *= num
+    print("result from inside the function : ", result)
+    return(result)                                                            
+    
 
-ls = [12, 70, -4, 16, 22]
-main(ls)
+main()
 
 print
 print("fin")
