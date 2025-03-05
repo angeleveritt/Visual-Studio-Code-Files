@@ -2,23 +2,46 @@
 print()
 print("Assignment File I/O")
 print()
+file = open("test.txt")
+content = file.readlines()
+print("1st line : ", print(content[1]))
 
-import os.path
+
 
 def read_first_line(file_name):
     print("inside read first line")         #working
-    file_name=open("test.txt", "r")
-    file_lines = file_name.readlines(1)
-    print(file_name.readlines)
-    file_name.close()
+    file = open(file_name, "r")
+    print("closed :", file.closed)
+    print("mode : ", file.mode)
+    file_lines = file.readlines(1)
+    print(file.readlines)
+    file.close()
     print("file.closed + ", file.closed)
     return file_lines
 
-def main():
+def main(file_name):
     print("inside main")                    #working
-    data = read_first_line("test.txt")
+    data = read_first_line(file_name)
     print(data)
-    
+
     return(data)
 
-main()
+main("test.txt")
+
+
+
+#def read_first_line(file_name):
+    print("inside read first line")         #working
+    file = open(file_name, "r")
+    print("closed :", file.closed)
+    print("mode : ", file.mode)
+    file_lines = file.readlines(1)
+    print(file.readlines)
+    file.close()
+    print("file.closed + ", file.closed)
+    return file_lines
+
+def main(file_name):
+    print("inside main")                    #working
+    data = read_first_line(file_name)
+    print(data)
