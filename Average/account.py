@@ -26,5 +26,5 @@ print(fred.balance)                         # on the whole Classes should never 
 
 print()
 #print(type(andy))             # the type of the andy variable is Account // andy's type is Account // it's like we've added a new type to the Python Type System
-
+print()
 
