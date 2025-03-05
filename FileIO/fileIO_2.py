@@ -3,9 +3,9 @@ print()
 print("Assignment File I/O")
 print()
 
-file = open("test.txt")
-content = file.readlines()
-print("1st line : ", print(content[1]))
+with open("test.txt") as f:
+    content = f.read()
+    print(content)
 
 
 
