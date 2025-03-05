@@ -3,11 +3,17 @@ print()
 print("Assignment File I/O")
 print()
 
-with open("test.txt") as f:
-    content = f.read()
-    print(content)
+def read_first_line(file_name):
+    open(file_name)
+    return file_name.readlines
 
 
+def main():
+    data = read_first_line("test.txt")
+    print(data)
+    return(data)
+
+main()
 
 
 
