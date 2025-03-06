@@ -10,8 +10,6 @@ print()
 date = input("Date : ")
 entry = input("How was your day? ")
 newdata[date] = entry
-print(diary)
-print(newdata)
 diary.update(newdata)
 
 for key, value in diary.items():
