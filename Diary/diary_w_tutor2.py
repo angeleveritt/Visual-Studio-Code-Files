@@ -3,7 +3,7 @@ print()
 print("Assignment - Personal Diary")
 print()
 diary = {}
-# 
+# #
 print("Welcome to your diary")
 print()
 
