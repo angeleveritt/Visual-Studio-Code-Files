@@ -1,3 +1,8 @@
+# Assignment - TaskList Manager - Angelique Everitt
+print()
+print("Assignment - TaskList Manager")
+print()
+
 import json
 import os
 from datetime import datetime
@@ -333,3 +338,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+print()
+print("fin")
+print()
+
