@@ -1,4 +1,4 @@
 Student Name,Grades
-Joe Blow,75.0
-Jane Doe,85.0
-Marty Fly,80.0
+Joe Blow,"75.0,75.0,50.0"
+Jane Doe,"85.0,85.0,90.0"
+Marty Fly,"80.0,80.0"
