@@ -5,7 +5,7 @@ print()
 questions = [
     "email address:  ", 
      "If you would like text notifications during the conference, enter your cell:  ",
-     "Conference badge number:  "
+     "Conference badge number:  "  
 ]
 while True:
 
@@ -30,6 +30,8 @@ while True:
     number_of_questions = len(questions)
     for index in range(number_of_questions):    # for index in range(len(questions))
         print(questions[index], answers[index])  # eventually, when multiple users, you will have a nested list for the answers
+
+   print()
 
     # eventually the questions and answers would be combined into a dictionary and stored in a file
     # might use the badge number as a key 
