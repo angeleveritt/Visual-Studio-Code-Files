@@ -12,6 +12,7 @@ high_score = 0
 secret_number = random.randrange(1, 101)   # this is called a literal bc I'm assigning a specific number // this is an integer variable whose value is 4
 # the FROM value is always inclusive and the TO value is always exclusive so you need to go one above
 
+print()
 print("Welcome to Secret Number")
 print()
 print("You have up to 10 guesses to get to the randomly chosen number.")
@@ -49,7 +50,7 @@ if user_score > high_score:
 
 print("The current high score is: ", high_score)
 print()
-"""play_again = input("Would you like to play again?  ")
+"""play_again = input("Would you like to play again?  ")   # restart game function/method??
 if play_again == "No":                                   # I    
     break      """                                          # I tried to get it to allow for multiple plays - not working       
 
@@ -60,6 +61,13 @@ print()
 
 # homework - add functionality to play again.  if player answers yes then goes again, if no, then game over
 # I haven't figured this out yet.  Do I need to define a function?
-# each game starts with 100 points for user
+# should I have a Game Class and then methods inside that to play the game?
+# methods would be maybe initiate and then replay?
+# is import pygame something I should do?  seems to be related to video graphics and audio
+# pyglet is a cross-platform library for python - for visually rich games/etc
+# Arcade - modern Python framework for crafting games w compelling graphics & sound
+
+# # should I be doing something with __init__() to initialize user_score to 100 at the beginning of each game?
+# each game starts with 100 points for user - I think that all that would be in there now is the highscore but eventually maybe name and highscore?
 # maintain a high score as well and tell the player if they achieved that / this is working but needs to work once I get the multiple game thing working
 # I noticed that it let me make too many wrong choices so I also fixed that - it stops the game
