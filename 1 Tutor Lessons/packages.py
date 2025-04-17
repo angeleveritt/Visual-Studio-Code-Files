@@ -51,13 +51,17 @@ def routing(shipment_quote):                               # not working
     if ((shipment_quote["can_ship"] == y) and (shipment_quote["dangerous"] == "n")):
         print("This package can be routed by ground or ocean or air.")
         shipment_quote["air_possible"] = "y"
+    return(shipment_quote)
    
 def cost(shipment_quote):                                  # not working   # I've decided to put all the estimates in the quote
-    shipment_quote["ship_air_cost_kg"] = (shipment_quote[weight_kg] * 10)
-    shipment_quote["ship_air_cost_cf"] = (shipment_quote[cubic_meters] * 20)
     ship_ocean_cost = 30                              # do I try to make these numbers come back as dollars (is that a thing?) or just put a "$" in front of the answer
     shipment_quote["ship_ground_nonurgent_cost"] = 25
     shipment_quote["ship_ground_urgent_cost"] = 45
+    if shipment_quote["air_possible"] == "y":
+        shipment_quote["ship_air_cost_kg"] = (shipment_quote[weight_kg] * 10)
+        shipment_quote["ship_air_cost_cf"] = (shipment_quote[cubic_meters] * 20)
+    return(shipment_quote)
+
 
 def estimate(shipment_quote):                              # not working
     print("Estimated cost to ship by various routes: ")
@@ -66,6 +70,7 @@ def estimate(shipment_quote):                              # not working
     print("Ocean: $", ship_ocean_cost)
     if shipment_quote["air_possible"] == "y":                  # I have not yet tried to get the either or working here 
         print("Air will be the larger of : $", ship_air_cost_kg, "or $", ship_air_cost_cf)
+    return(shipment_quote)
 
 #for my information                          # not working
 def fmi(shipment_quote):
@@ -73,21 +78,21 @@ def fmi(shipment_quote):
     for key, value in shipment_quote.items():
         print("key=%s, value=%s" % (key, value))
     return(shipment_quote)
-
-
                                                           
 def main():                                      
     shipment_quote = get_input()
-    shipment_quote = eval_package()     # line 88 error but I don't know why
-    shipment_quote = routing()
-    shipment_quote = cost()             # line 94 error but I don't understand it
-    shipment_quote = estimate()
-    shipment_quote = fmi()
+    shipment_quote = eval_package(shipment_quote)     # line 88 error but I don't know why
+    shipment_quote = routing(shipment_quote)
+    shipment_quote = cost(shipment_quote)             # line 94 error but I don't understand it
+    shipment_quote = estimate(shipment_quote)
+    shipment_quote = fmi(shipment_quote)
 
 if __name__ == "__main__":                        # name is special type of variable -->  called a dunder (double-underscore) // allows me to import from here to other programs 
-    main()                                        # getting error here now # writing this way means then entire .py file is now a module rather than just a script
+    main()                                        # getting error here now 
+                                                # writing this way means then entire .py file is now a module rather than just a script
 
-print()
+
+print()                                                         
 print("still menu and larger value things to clean up")
 print()
 print
