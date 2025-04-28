@@ -58,16 +58,12 @@ def calculate_ocean(shipment_quote):                                            
 
 
 def calculate_air(shipment_quote):                                                            # air
-    #print("Can this be shipped by air?")
-  
-# ?? reqs do not expressly say that heavy pkgs cannot go by air but I'm writing it that way bc otherwise, this data not used
-# ?? this is very muddy requirement.  what happens w urgent+heavy pkgs?
-    if ((shipment_quote["dangerous"] == "True") or (shipment_quote["can_ship"] == "False")):    # removed if ((shipment_quote["heavy"] == "y") or
+    print("You made it into def calculate_air")                                                         # this is no longer working
+    if ((shipment_quote["dangerous"] == "y") or (shipment_quote["can_ship"] == "False")):    # removed if ((shipment_quote["heavy"] == "y") or
         shipment_quote["air_possible"] = "False"
     else:
         shipment_quote["air_possible"] = "True"
-       
-    if shipment_quote["air_possible"] == "True":                                         
+   if shipment_quote["air_possible"] == "True":                                               # but this is working
         shipment_quote["ship_air_cost_kg"] = (shipment_quote["weight_kg"] * 10)          # cost for air weight
         shipment_quote["ship_air_cost_cm"] = (shipment_quote["cubic_meters"] * 20)       # cost for air volume
     return(shipment_quote)
