@@ -40,20 +40,20 @@ def validate_data(shipment_quote):                                          # no
 
 def evaluate_package(shipment_quote):
     if ((shipment_quote["weight_kg"] >= 10) or (shipment_quote["cubic_meters"] >= 125)):          # too heavy, too voluminous
-        shipment_quote["can_ship"] = "n"                 
+        shipment_quote["can_ship"] = "False"                 
     else: 
-        shipment_quote["can_ship"] = "y"                    
+        shipment_quote["can_ship"] = "True"                    
     """if shipment_quote["weight_kg"] >= 7:                                            
         shipment_quote["heavy"] = "y" 
     else:
-        shipment_quote["heavy"] = "n"""" 
+        shipment_quote["heavy"] = "n""" 
     return(shipment_quote)
 
   
 
 def calculate_ocean(shipment_quote):                                                                        # ocean
     #print("Can this be shipped by ocean?")                   
-    if shipment_quote["can_ship"] == "y":
+    if shipment_quote["can_ship"] == "True":
         shipment_quote["ship_ocean_cost"] = 30
                                                                                                    # cost for ocean
     return(shipment_quote)    
@@ -64,19 +64,19 @@ def calculate_air(shipment_quote):                                              
   
 # ?? reqs do not expressly say that heavy pkgs cannot go by air but I'm writing it that way bc otherwise, this data not used
 # ?? this is very muddy requirement.  what happens w urgent+heavy pkgs?
-    if ((shipment_quote["heavy"] == "y") or (shipment_quote["dangerous"] == "y") or (shipment_quote["can_ship"] == "n")):
-        shipment_quote["air_possible"] = "n"
+    if ((shipment_quote["dangerous"] == "True") or (shipment_quote["can_ship"] == "False")):    # removed if ((shipment_quote["heavy"] == "y") or
+        shipment_quote["air_possible"] = "False"
     else:
-        shipment_quote["air_possible"] = "y"
+        shipment_quote["air_possible"] = "True"
        
-    if shipment_quote["air_possible"] == "y":                                         
+    if shipment_quote["air_possible"] == "True":                                         
         shipment_quote["ship_air_cost_kg"] = (shipment_quote["weight_kg"] * 10)          # cost for air weight
         shipment_quote["ship_air_cost_cm"] = (shipment_quote["cubic_meters"] * 20)       # cost for air volume
     return(shipment_quote)
 
 def calculate_ground(shipment_quote):                                                          # ground
     #print("Can this be shipped by ground?")                   
-    if shipment_quote["can_ship"] == "y":
+    if shipment_quote["can_ship"] == "True":
         shipment_quote["ship_ground_nonurgent_cost"] = 25                                # cost for ground if not urgent
         shipment_quote["ship_ground_urgent_cost"] = 45                                   # cost for ground if urgent
     return(shipment_quote)    
