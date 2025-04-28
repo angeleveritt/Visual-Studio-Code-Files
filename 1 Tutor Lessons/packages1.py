@@ -39,6 +39,7 @@ def get_input():
 
 
 def evaluate_package(shipment_quote):
+    print("inside evaluate_package")
     if ((shipment_quote["weight_kg"] >= 10) or (shipment_quote["cubic_meters"] >= 125)):          # too heavy, too voluminous
         shipment_quote["can_ship"] = "False"                 
     else: 
