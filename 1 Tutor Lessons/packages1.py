@@ -27,7 +27,7 @@ def get_input():
           
     return shipment_quote
 
-def validate_data(shipment_quote):                                          # not working but hasn't broken anything else
+"""def validate_data(shipment_quote):                                          # not working but hasn't broken anything else
     print("testing if validate_data is ever opened")
     if ((shipment_quote["dangerous"] == "Y") or (shipment_quote["dangerous"]=="y") or (shipment_quote["dangerous"]=="Yes") or (shipment_quote["dangerous"]=="yes") or (shipment_quote["dangerous"]=="YES")):
         shipment_quote["dangerous"] = True
@@ -35,7 +35,7 @@ def validate_data(shipment_quote):                                          # no
         shipment_quote["dangerous"] = False
     if ((shipment_quote["dangerous"] != True) or (shipment_quote["dangerous"] != False)):
         print("Invalid value for Dangerous.")
-    return(shipment_quote)
+    return(shipment_quote)"""
 
 
 def evaluate_package(shipment_quote):
@@ -43,19 +43,17 @@ def evaluate_package(shipment_quote):
         shipment_quote["can_ship"] = "False"                 
     else: 
         shipment_quote["can_ship"] = "True"                    
-    """if shipment_quote["weight_kg"] >= 7:                                            
+    """if shipment_quote["weight_kg"] >= 7:                              # removing the "heavy" variable bc not really being used                    
         shipment_quote["heavy"] = "y" 
     else:
         shipment_quote["heavy"] = "n""" 
     return(shipment_quote)
 
-  
-
 def calculate_ocean(shipment_quote):                                                                        # ocean
     #print("Can this be shipped by ocean?")                   
     if shipment_quote["can_ship"] == "True":
-        shipment_quote["ship_ocean_cost"] = 30
-                                                                                                   # cost for ocean
+        shipment_quote["ship_ocean_cost"] = 30                                         # cost for ocean
+                                                                                                          
     return(shipment_quote)    
 
 
@@ -80,8 +78,7 @@ def calculate_ground(shipment_quote):                                           
         shipment_quote["ship_ground_nonurgent_cost"] = 25                                # cost for ground if not urgent
         shipment_quote["ship_ground_urgent_cost"] = 45                                   # cost for ground if urgent
     return(shipment_quote)    
-
-                        
+                  
 def fmi(shipment_quote):                                                             # prints it the way I prefer
     print("Shipment Quote Details")                                                     # complete dictionary
     for key, value in shipment_quote.items():
@@ -102,7 +99,7 @@ def main():
 
             shipment_quote = get_input()
             #print("after get_input: ", shipment_quote)
-            shipment_quote = validate_data(shipment_quote)
+            #shipment_quote = validate_data(shipment_quote)
             shipment_quote = evaluate_package(shipment_quote)
             shipment_quote = calculate_ocean(shipment_quote)
             #print("after ocean: ", shipment_quote)
