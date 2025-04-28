@@ -97,7 +97,7 @@ def main():
             #shipment_quote = validate_data(shipment_quote)
             shipment_quote = evaluate_package(shipment_quote)
             if shipment_quote["can_ship"] == "False":
-                continue
+                continue                                        # it doesn't ask if the pkg is dangerous if it's already too big.  Could maybe do this after each answer.
             shipment_quote = get_input2(shipment_quote)
             shipment_quote = calculate_ocean(shipment_quote)
             shipment_quote = calculate_air(shipment_quote)
