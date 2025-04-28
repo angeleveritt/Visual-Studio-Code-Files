@@ -14,9 +14,9 @@ def get_input():
     shipment_quote["cubic_meters"] = int(input("Cubic meters of package: ")) #I have them doing the math outside of program
     shipment_quote["deliver_by_date"] = input("Deliver by date: ")
     shipment_quote["dangerous"] = input("Dangerous goods (y/n): ")   # will translate these to True and False   // separate dictionary for reference_data{}
-    #shipment_quote["urgent"] = input("Urgent (y/n): ")               # will translate these to True and False  
-    #shipment_quote["international"] = input("International (y/n): ")  # will translate these to True and False  # I am not assuming that ocean is equivalent to international
-    #shipment_quote["heavy"] = None
+    #shipment_quote["urgent"] = input("Urgent (y/n): ")               # if keeping, will translate these to True and False  
+    #shipment_quote["international"] = input("International (y/n): ")  # if keeping, will translate these to True and False  # I am not assuming that ocean is equivalent to international
+    #shipment_quote["heavy"] = None                                    # if keeping, will translate to True False
     shipment_quote["can_ship"] = None
     shipment_quote["air_possible"] = None                                   # use None for defaults for safety and debugging
     shipment_quote["ship_ground_nonurgent_cost"] = None                     # None is a value that means I don't have a value yet = built into Python, like True or False
@@ -59,18 +59,17 @@ def calculate_ocean(shipment_quote):                                            
 
 
 def calculate_air(shipment_quote):                                                            # air
-    print("You made it into def calculate_air")                                                         # this is no longer working
+    print("You made it into def calculate_air")                                              # this is no longer working
     if ((shipment_quote["dangerous"] == "y") or (shipment_quote["can_ship"] == "False")):    # removed if ((shipment_quote["heavy"] == "y") or
         shipment_quote["air_possible"] = "False"
     else:
         shipment_quote["air_possible"] = "True"
-   if shipment_quote["air_possible"] == "True":                                               # but this is working
+    if shipment_quote["air_possible"] == "True":                                               # but this part is working
         shipment_quote["ship_air_cost_kg"] = (shipment_quote["weight_kg"] * 10)          # cost for air weight
         shipment_quote["ship_air_cost_cm"] = (shipment_quote["cubic_meters"] * 20)       # cost for air volume
     return(shipment_quote)
 
 def calculate_ground(shipment_quote):                                                          # ground
-    #print("Can this be shipped by ground?")                   
     if shipment_quote["can_ship"] == "True":
         shipment_quote["ship_ground_nonurgent_cost"] = 25                                # cost for ground if not urgent
         shipment_quote["ship_ground_urgent_cost"] = 45                                   # cost for ground if urgent
