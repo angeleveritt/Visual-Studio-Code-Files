@@ -12,9 +12,10 @@ def get_input():
     shipment_quote["customer_name"] = input("Customer name: ")    
     shipment_quote["weight_kg"] = int(input("Package weight in kilograms: "))
     shipment_quote["cubic_meters"] = int(input("Cubic meters of package: ")) #I have them doing the math outside of program
-    shipment_quote["deliver_by_date"] = input("Deliver by date: ")
+    return shipment_quote
+
+def get_input2(shipment_quote):
     shipment_quote["dangerous"] = input("Dangerous goods (y/n): ")   # will translate these to True and False   // separate dictionary for reference_data{}
-   
     shipment_quote["can_ship"] = None
     shipment_quote["air_possible"] = None                                   # use None for defaults for safety and debugging
     shipment_quote["ship_ground_nonurgent_cost"] = None                     # None is a value that means I don't have a value yet = built into Python, like True or False
@@ -22,8 +23,18 @@ def get_input():
     shipment_quote["ship_ocean_cost"] = None
     shipment_quote["ship_air_cost_kg"] = None
     shipment_quote["ship_air_cost_cm"] = None                          
-          
     return shipment_quote
+
+def evaluate_package(shipment_quote):
+    if ((shipment_quote["weight_kg"] >= 10) or (shipment_quote["cubic_meters"] >= 125)):          # too heavy, too voluminous
+        shipment_quote["can_ship"] = "False" 
+        print("We cannot ship your package because it is either more than 10kg or more than 125 cubic meters.")                
+        print()
+                                 # exit() quit() both bounce me entirely out of the program and I cannot use break or continue here
+    else: 
+        shipment_quote["can_ship"] = "True"                    
+    
+    return(shipment_quote)
 
 """def validate_data(shipment_quote):                                          # not working but hasn't broken anything else
     print("testing if validate_data is ever opened")
@@ -36,13 +47,7 @@ def get_input():
     return(shipment_quote)"""
 
 
-def evaluate_package(shipment_quote):
-    if ((shipment_quote["weight_kg"] >= 10) or (shipment_quote["cubic_meters"] >= 125)):          # too heavy, too voluminous
-        shipment_quote["can_ship"] = "False"                 
-    else: 
-        shipment_quote["can_ship"] = "True"                    
-    
-    return(shipment_quote)
+
 
 def calculate_ocean(shipment_quote):                                                  # ocean
                       
@@ -89,15 +94,14 @@ def main():
         if action == "1":
 
             shipment_quote = get_input()
-            #print("after get_input: ", shipment_quote)
             #shipment_quote = validate_data(shipment_quote)
             shipment_quote = evaluate_package(shipment_quote)
+            if shipment_quote["can_ship"] == "False":
+                continue
+            shipment_quote = get_input2(shipment_quote)
             shipment_quote = calculate_ocean(shipment_quote)
-            #print("after ocean: ", shipment_quote)
             shipment_quote = calculate_air(shipment_quote)
-            #print("after air: ", shipment_quote)
             shipment_quote = calculate_ground(shipment_quote)
-            #print("after ground: ", shipment_quote)
             print()
             shipment_quote = fmi(shipment_quote)
                        
