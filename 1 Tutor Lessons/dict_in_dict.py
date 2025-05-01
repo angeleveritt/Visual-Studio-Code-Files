@@ -139,7 +139,7 @@ print()
 
 print("777777777777777777777777777777777777777777777777777777777")
 print()
-a = "2"
+a = "2"                                                               # this is working // I don't know what I've done wrong in the other program
 b = 4
 c = int(a)
 print(a, b, c)
