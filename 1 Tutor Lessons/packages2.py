@@ -3,7 +3,6 @@
 # this is between 100 and 200 lines of code // Classes are going out of favour, in favour of Functional Programming
 # Dictionary rather Class here
 
-#menu
 print() 
 
 def get_input():                              
@@ -12,7 +11,7 @@ def get_input():
     shipment_quote["customer_name"] = input("Customer name: ")    
     shipment_quote["weight_kg"] = int(input("Package weight in kilograms: "))
     shipment_quote["cubic_meters"] = int(input("Cubic meters of package: ")) #I have them doing the math outside of program
-    return shipment_quote
+    return shipment_quote                                           # broke it up so I'm not asking for more info than I need to establish can_ship
 
 def get_input2(shipment_quote):
     shipment_quote["dangerous"] = input("Dangerous goods (y/n): ")   # will translate these to True and False   // separate dictionary for reference_data{}
