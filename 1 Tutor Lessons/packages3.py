@@ -3,6 +3,7 @@
 # this is between 100 and 200 lines of code // Classes are going out of favour, in favour of Functional Programming
 # Dictionary rather Class here
 # have to figure out what the separate dictionary for reference information would hold
+import pprint  
 
 print() 
 
@@ -27,26 +28,26 @@ def get_input():
     return shipment_quote
 
 def evaluate_package(shipment_quote):
-    shipment_quote["weight_kg"] = int(shipment_quote["weight_kg"])                        # the error is in the area but I think I've written this correctly
-    shipment_quote["cubic_meters"] = int(shipment_quote["cubic_meters"])
-    if ((shipment_quote["weight_kg"] >= 10) or (shipment_quote["cubic_meters"] >= 125)):          # too heavy, too voluminous
-        shipment_quote["can_ship"] = "False" 
+    shipment_quote["weight_kg"]["value"] = int(shipment_quote["weight_kg"]["value"])                        
+    shipment_quote["cubic_meters"]["value"] = int(shipment_quote["cubic_meters"]["value"])
+    if ((shipment_quote["weight_kg"]["value"] >= 10) or (shipment_quote["cubic_meters"]["value"] >= 125)):          # too heavy, too voluminous
+        shipment_quote["can_ship"]["value"] = "False" 
         print("We cannot ship your package because it is either more than 10kg or more than 125 cubic meters.")                
         print()
                                  # exit() quit() both bounce me entirely out of the program and I cannot use break or continue here
     else: 
-        shipment_quote["can_ship"] = "True"                    
+        shipment_quote["can_ship"]["value"] = "True"                    
     return(shipment_quote)
 
 def declare_variables(shipment_quote):
    
-    shipment_quote["can_ship"] = None                                       # confirm that this retains the items input above
-    shipment_quote["air_possible"] = None                                   # use None for defaults for safety and debugging
-    shipment_quote["ship_ground_nonurgent_cost"] = None                     # None is a value that means I don't have a value yet = built into Python, like True or False
-    shipment_quote["ship_ground_urgent_cost"] = None
-    shipment_quote["ship_ocean_cost"] = None
-    shipment_quote["ship_air_cost_kg"] = None
-    shipment_quote["ship_air_cost_cm"] = None                          
+    shipment_quote["can_ship"]["value"] = None                                       # confirm that this retains the items input above
+    shipment_quote["air_possible"]["value"] = None                                   # use None for defaults for safety and debugging
+    shipment_quote["ship_ground_nonurgent_cost"]["value"] = None                     # None is a value that means I don't have a value yet = built into Python, like True or False
+    shipment_quote["ship_ground_urgent_cost"]["value"] = None
+    shipment_quote["ship_ocean_cost"]["value"] = None
+    shipment_quote["ship_air_cost_kg"]["value"] = None
+    shipment_quote["ship_air_cost_cm"]["value"] = None                          
     return shipment_quote
 
 
@@ -62,26 +63,26 @@ def declare_variables(shipment_quote):
     return(shipment_quote)"""
 
 def calculate_ocean(shipment_quote):                                                  # ocean
-    if shipment_quote["can_ship"] == "True":
-        shipment_quote["ship_ocean_cost"] = 30                                         # cost for ocean flat rate
+    if shipment_quote["can_ship"]["value"] == "True":
+        shipment_quote["ship_ocean_cost"]["value"] = 30                                         # cost for ocean flat rate
                                                                                                           
     return(shipment_quote)    
 
 
 def calculate_air(shipment_quote):                                                            # air
-    if ((shipment_quote["dangerous"] == "y") or (shipment_quote["can_ship"] == "False")):    # removed if ((shipment_quote["heavy"] == "y") or
-        shipment_quote["air_possible"] = "False"
+    if ((shipment_quote["dangerous"]["value"] == "y") or (shipment_quote["can_ship"]["value"] == "False")):    # removed if ((shipment_quote["heavy"] == "y") or
+        shipment_quote["air_possible"]["value"] = "False"
     else:
-        shipment_quote["air_possible"] = "True"
-    if shipment_quote["air_possible"] == "True":                                               # but this part is working
-        shipment_quote["ship_air_cost_kg"] = (shipment_quote["weight_kg"] * 10)          # cost for air weight
-        shipment_quote["ship_air_cost_cm"] = (shipment_quote["cubic_meters"] * 20)       # cost for air volume
+        shipment_quote["air_possible"]["value"] = "True"
+    if shipment_quote["air_possible"]["value"] == "True":                                               # but this part is working
+        shipment_quote["ship_air_cost_kg"]["value"] = (shipment_quote["weight_kg"]["value"] * 10)          # cost for air weight
+        shipment_quote["ship_air_cost_cm"]["value"] = (shipment_quote["cubic_meters"]["value"] * 20)       # cost for air volume
     return(shipment_quote)
 
 def calculate_ground(shipment_quote):                                                          # ground
-    if shipment_quote["can_ship"] == "True":
-        shipment_quote["ship_ground_nonurgent_cost"] = 25                                # cost for ground if not urgent flat rate
-        shipment_quote["ship_ground_urgent_cost"] = 45                                   # cost for ground if urgent flat rate
+    if shipment_quote["can_ship"]["value"] == "True":
+        shipment_quote["ship_ground_nonurgent_cost"]["value"] = 25                                # cost for ground if not urgent flat rate
+        shipment_quote["ship_ground_urgent_cost"]["value"] = 45                                   # cost for ground if urgent flat rate
     return(shipment_quote)    
                   
 def fmi(shipment_quote):                                                             # prints it the way I prefer
@@ -90,8 +91,11 @@ def fmi(shipment_quote):                                                        
     for key, value in shipment_quote.items():
         #print("key=%s, value=%s" % (key, value))
         print(key, value)    
+    for key, value in shipment_quote.items():
+        print(key, )
     return(shipment_quote)
-                                                          
+
+                                                         
 def main():                                      
     while True:
         print()
@@ -118,7 +122,8 @@ if __name__ == "__main__":                        # name is special type of vari
     main()                                        # getting error here now 
                                                 # writing this way means then entire .py file is now a module rather than just a script
 
-
+import pprint                                   # pretty print, pprint
+pprint.pprint(booking)
 print()
 print("fin")
 print
