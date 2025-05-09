@@ -18,8 +18,8 @@ print()
 def get_input():
     shipment_quote = {                                                              # nested dictionary version
         "customer_name": {"name": "Customer name", "value": None},
-        "weight_kg": {"name": "Package weight (kg)", "value": 0},                # how do I add the Int here // changed from None to 0 to get integer
-        "cubic_meters": {"name": "Package volume (cubic meters)", "value": 0},   # how do I add the Int here // changed from None to 0 to get integer
+        "weight_kg": {"name": "Package weight (kg)", "value": None},                # how do I add the Int here // changed from None to 0 to get integer but the input from user still text
+        "cubic_meters": {"name": "Package volume (cubic meters)", "value": None},   # how do I add the Int here // changed from None to 0 to get integer but the input from user still text
         "dangerous": {"name": "Dangerous goods? (y/n)", "value": None}              # will need to translate to True False
     }
     for field_name, value in shipment_quote.items():    
@@ -27,8 +27,8 @@ def get_input():
     return shipment_quote
 
 def evaluate_package(shipment_quote):
-    (shipment_quote["weight_kg"]) = int(shipment_quote["weight_kg"])                        # the error is in the area but I think I've written this correctly
-    (shipment_quote["cubic_meters"]) = int(shipment_quote["cubic_meters"])
+    shipment_quote["weight_kg"] = int(shipment_quote["weight_kg"])                        # the error is in the area but I think I've written this correctly
+    shipment_quote["cubic_meters"] = int(shipment_quote["cubic_meters"])
     if ((shipment_quote["weight_kg"] >= 10) or (shipment_quote["cubic_meters"] >= 125)):          # too heavy, too voluminous
         shipment_quote["can_ship"] = "False" 
         print("We cannot ship your package because it is either more than 10kg or more than 125 cubic meters.")                
@@ -103,10 +103,9 @@ def main():
 
         if action == "1":
             shipment_quote = get_input()
-            shipment_quote = evaluate_package(shipment_quote)
+            shipment_quote = evaluate_package(shipment_quote)    # this is not working bc of input being text and not taking my change to integer
             if shipment_quote["can_ship"] == "False":
-                continue                                        # it doesn't ask if the pkg is dangerous if it's already too big.  Could maybe do this after each answer.
-            shipment_quote = declare_variables(shipment_quote)
+                continue                                        # this way it still asks if dangerous even though we might already know it cannot be shipped        shipment_quote = declare_variables(shipment_quote)
             shipment_quote = calculate_ocean(shipment_quote)
             shipment_quote = calculate_air(shipment_quote)
             shipment_quote = calculate_ground(shipment_quote)
