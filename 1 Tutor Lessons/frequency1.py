@@ -57,5 +57,13 @@ for key, value in counts.items():
     print(f"{key:<10} {value: <5}")                               # left aligns key and makes sure it takes up at least 10 characters
     print()                                                         # then left aligns value and reserves 5 characters
 
+for key, value in counts.items():
+    print(f"{key:<10} {value: >5}")
+
 print()
 print("###################")
+
+
+# other formatting rules might be useful to look up
+# leading zeros in front of numeric
+# currency and percentage signs
